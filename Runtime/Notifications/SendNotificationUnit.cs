@@ -10,7 +10,7 @@ namespace Notifications
     [UnitSurtitle("Notifications")]
     [UnitTitle("Send Notification")]
     
-    public class SendNotificationUnit: Unit
+    public class SendNotificationUnit: Unit, IUnit
     {
         [SerializeAs(nameof(argumentCount))]
         private int _argumentCount;
@@ -37,8 +37,13 @@ namespace Notifications
         /// The name of the event.
         /// </summary>
         [DoNotSerialize]
-        [PortLabelHidden]
         public ValueInput notificationType { get; private set; }
+        
+        /// <summary>
+        /// Should this notification trigger only once?
+        /// </summary>
+        [DoNotSerialize]
+        public ValueInput sendOnce { get; private set; }
         
         /// <summary>
         /// The action to do after the event has been triggered.
@@ -47,12 +52,18 @@ namespace Notifications
         [PortLabelHidden]
         public ControlOutput exit { get; private set; }
 
+        /// <summary>
+        /// If send once is true, this tracks if we already triggered this notification
+        /// </summary>
+        private bool _triggered = false;
+
         protected override void Definition()
         {
             enter = ControlInput(nameof(enter), Trigger);
 
             exit = ControlOutput(nameof(exit));
 
+            sendOnce = ValueInput<bool>(nameof(sendOnce), false);
             notificationType = ValueInput<NotificationTypeScriptableObject>(nameof(notificationType), null);
             
             arguments = new List<ValueInput>();
@@ -70,6 +81,11 @@ namespace Notifications
 
         private ControlOutput Trigger(Unity.VisualScripting.Flow flow)
         {
+            
+            var b = flow.GetValue<bool>(this.sendOnce);
+
+            if (b && _triggered) return exit;
+            
             var n = flow.GetValue<NotificationTypeScriptableObject>(this.notificationType);
 
             if (n != null)
@@ -78,6 +94,8 @@ namespace Notifications
                 var arguments = this.arguments.Select(flow.GetConvertedValue).ToArray();
             
                 EventBus.Trigger( NotificationEventUnit.EventBusHook, new CustomEventArgs(name, arguments));
+
+                _triggered = true;
             }
             
             return exit;
