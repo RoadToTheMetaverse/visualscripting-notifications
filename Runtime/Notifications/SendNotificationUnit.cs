@@ -10,7 +10,7 @@ namespace Notifications
     [UnitSurtitle("Notifications")]
     [UnitTitle("Send Notification")]
     
-    public class SendNotificationUnit: Unit, IUnit
+    public class SendNotificationUnit: Unit
     {
         [SerializeAs(nameof(argumentCount))]
         private int _argumentCount;
