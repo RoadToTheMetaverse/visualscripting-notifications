@@ -1,4 +1,4 @@
-![R2MV](README/Banner.png)
+![R2MV](https://i.imgur.com/80NR4Ec.png)
 
 Visual Scripting Notifications
 ====
@@ -24,11 +24,11 @@ Visual Scripting Notifications is a Unity [package](https://docs.unity3d.com/Man
 
 2. Click the `'+'` icon within the Package Manager and select `"Add package from git URL..."`
 
-    ![Package Manager Add](README/PackageManagerGitURL.png)
+    ![Package Manager Add](https://i.imgur.com/1ugy9GZ.png)
 
 3. Paste *https://github.com/RoadToTheMetaverse/visualscripting-notifications.git* into the text field and click `"Add"`
 
-    ![Package Manager Add](README/PackageManagerAdd.png)
+    ![Package Manager Add](https://i.imgur.com/bxgt3hc.png)
 
 4. Visual Scripting Notification is now installed in your Unity project as an read-only package within the project's `Packages` folder named `Visual Scripting Notifications`.
 
@@ -36,7 +36,7 @@ Visual Scripting Notifications is a Unity [package](https://docs.unity3d.com/Man
 
 6. Click `Generate Nodes` or `Regenerate Nodes`.
 
-    ![Package Manager Add](README/NodeLibraryGenerateNodes.png)
+    ![Package Manager Add](https://i.imgur.com/P5CpxL8.png)
 
 
 <br>
@@ -52,7 +52,7 @@ Notifications types are Scriptable Objects. To create a new one, click the `+` b
 
 A new asset will be created. You can name it as you see fit. The asset contains a Notification Unique ID that is automatically generated. 
 
- ![Package Manager Add](README/VSCreateNotification.png)
+ ![Package Manager Add](https://i.imgur.com/7eeyjIZ.png)
 
 
  > **Do not duplicate a notification**. Both notifications will have the same unique ID and this might create unexpected behaviours!
@@ -67,12 +67,12 @@ You can add a `Send Notification` unit to any Script Graph. It takes two argumen
 
 You can also send arguments with the notification. In the unit's header change the Argements value to the number of arguments needed. This will add the necessary port(s) to connect to.
 
-![Send Notification](README/VSSendNotification.png)
+![Send Notification](https://i.imgur.com/LHE7XhJ.png)
 
 ## Handling notifications
 Add a `Handle Notification` unit to any graph. Set the notification type it should handle. Add the necessary Argument port(s) to handle the data sent with the notification.
 
-![Send Notification](README/VSHandleNotification.png)
+![Send Notification](https://i.imgur.com/gMSlXhS.png)
 
 # Release note
 ## Version 0.0.1
